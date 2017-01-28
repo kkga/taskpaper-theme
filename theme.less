@@ -1,0 +1,119 @@
+// See http://guide.taskpaper.com/creating_themes.html to get started.
+
+// Base text
+@font-family: Whitney Pro;
+@font-size: $USER_FONT_SIZE * 1.25;
+@text-color: #333;
+@background-color: #efefef;
+@line-height-multiple: 1;
+
+// UI
+@tint-color: rgb(0, 122, 255);
+@interface-color: @tint-color;
+@selection-color: mix(@tint-color, @background-color, 30%);
+@invisibles-color: mix(@tint-color, @background-color, 70%);
+
+editor {
+  color: @text-color;
+  font-size: @font-size;
+  font-family: @font-family;
+  background-color: @background-color;
+  line-height-multiple: @line-height-multiple;
+  item-indent: 16px;
+  caret-width: 2px;
+  caret-color: @tint-color;
+  handle-color: mix(@text-color, @background-color, 15%);
+  item-handle-size: floor(7 * @ui-scale);
+  drop-indicator-color: @tint-color;
+  invisibles-color: @invisibles-color;
+  selection-background-color: @selection-color;
+  guide-line-color: mix(@text-color, @background-color, 10%);
+  message-color: mix(@text-color, @background-color, 50%);
+}
+
+item {
+  handle-color: mix(@text-color, @background-color, 10%);
+  handle-border-color: mix(#333, @background-color, 10%);
+  handle-border-width: 1;
+  paragraph-spacing-before: $USER_FONT_SIZE * 0.5;
+}
+
+item[leaf] {
+  handle-color: none;
+  handle-border-color: mix(@text-color, @background-color, 10%);
+}
+
+item[empty] {
+  handle-color: none;
+}
+
+item[collapsed] {
+  handle-color: mix(@text-color, @background-color, 50%);
+  handle-size: floor(8 * @ui-scale);
+}
+
+item[expanded] {
+  handle-border-color: mix(@text-color, @background-color, 10%);
+}
+
+item[data-type="note"] {
+  font-family: Whitney Condensed;
+  font-style: normal;
+  color: mix(@text-color, @background-color, 50%);
+  paragraph-spacing-before: $USER_FONT_SIZE * 0.25;
+  handle-color: none;
+  handle-border-color: none;
+}
+
+item[data-type="task"] {
+  font-style: normal;
+}
+
+item[data-type="project"] {
+  font-family: Whitney Smallcaps;
+  font-weight: bold;
+  // font-size: @font-size * 1.125;
+  // line-height-multiple: @line-height-multiple * 1.5;
+  // paragraph-spacing-before: $USER_FONT_SIZE;
+  // paragraph-spacing-after: $USER_FONT_SIZE * 0.25;
+}
+
+item[depth=1].item[data-type=project] {
+  paragraph-spacing-before: $USER_FONT_SIZE * 2;
+}
+
+item[data-done] {
+  > run[content] {
+    color: mix(@text-color, @background-color, 30%);
+    text-strikethrough: NSUnderlineStyleSingle;
+    text-strikethrough-color: mix(@text-color, @background-color, 30%);
+  }
+  > run[tag] {
+    color: mix(@text-color, @background-color, 30%);
+  }
+}
+
+run[link] {
+  cursor: pointer;
+  color: mix(@text-color, @background-color, 50%);
+  text-decoration: underline;
+  text-underline-color: mix(@text-color, @background-color, 15%);
+}
+
+run[link^="button"] {
+  color: @text-color;
+  text-expansion: 1;
+  text-decoration: none;
+}
+
+run[link^="filter"] {
+  color: @text-color;
+}
+
+run[tag] {
+  font-family: Whitney Smallcaps;
+  text-decoration: none;
+  // font-style: italic;
+  // font-weight: bold;
+  color: mix(@text-color, @background-color, 50%);
+}
